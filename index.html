@@ -5,6 +5,26 @@
   <title>PWA PushCode Demo</title>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#ff0000">
+
+  <script defer src="https://www.pushcode.jp/dist/js/pushcode.js"></script>
+<script>
+window.PushCodeInit = function() {
+  try {
+    if (PushCode && PushCode.isSupport()) {
+      PushCode.init({
+        domainToken: '1160175a6b5bda65f91e10cd0dd8d3bf5b3c114500514a06d56c2853579f86ad',
+        userid: ''
+      });
+      PushCode.components.openSubscribeDialog();
+    }
+  } catch (err) {
+    console.error(err);
+    if (PushCode) {
+      PushCode.sendError(err);
+    }
+  }
+};
+</script>
 </head>
 <body>
   <h1>PWA PushCode通知テスト</h1>
@@ -40,4 +60,5 @@
     }
   </script>
 </body>
+
 </html>
