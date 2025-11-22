@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>PWA PushCode Demo</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff0000">
+</head>
+<body>
+  <h1>PWA PushCode通知テスト</h1>
+
+  <!-- PushCode導入ファイル -->
+  <script defer src="https://www.pushcode.jp/dist/js/pushcode.js"></script>
+  <script>
+    window.PushCodeInit = function() {
+      try {
+        if (PushCode && PushCode.isSupport()) {
+          PushCode.init({
+            domainToken: '1160175a6b5bda65f91e10cd0dd8d3bf5b3c114500514a06d56c2853579f86ad',
+            userid: '' // 任意でユーザーIDを設定可能
+          });
+          // 購読ダイアログを表示
+          PushCode.components.openSubscribeDialog();
+        }
+      } catch (err) {
+        console.error(err);
+        if (PushCode) {
+          PushCode.sendError(err);
+        }
+      }
+    };
+  </script>
+
+  <!-- Service Worker登録 -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js")
+        .then(reg => console.log("SW登録成功:", reg))
+        .catch(err => console.error("SW登録失敗:", err));
+    }
+  </script>
+</body>
+</html>
