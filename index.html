@@ -29,31 +29,9 @@ window.PushCodeInit = function() {
 </head>
 <body>
   <h1>PWA PushCode通知テスト</h1>
-
-  <!-- PushCode導入ファイル -->
-  <script defer src="https://www.pushcode.jp/dist/js/pushcode.js"></script>
-  <script>
-    window.PushCodeInit = function() {
-      try {
-        if (PushCode && PushCode.isSupport()) {
-          PushCode.init({
-            domainToken: '1160175a6b5bda65f91e10cd0dd8d3bf5b3c114500514a06d56c2853579f86ad',
-            userid: '' // 任意でユーザーIDを設定可能
-          });
-          // 購読ダイアログを表示
-          PushCode.components.openSubscribeDialog();
-        }
-      } catch (err) {
-        console.error(err);
-        if (PushCode) {
-          PushCode.sendError(err);
-        }
-      }
-    };
-  </script>
-
 </body>
 
 </html>
+
 
 
